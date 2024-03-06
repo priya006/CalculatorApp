@@ -5,151 +5,91 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.DarkGray
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun calculator(
-    viewModel:  CalculatorViewModel
-) {
 
+) {
+    var textValue by remember { mutableStateOf("") }
     Box(
         modifier = Modifier
-            .fillMaxSize() // Occupy the whole available space
-            .background(color = Color.Black), // Set background color
-        contentAlignment = Alignment.TopEnd // Align children to center
-    )
-    {
+            .fillMaxSize()
+            .background(DarkGray)
+    ) {
         Column(
             modifier = Modifier
+                .fillMaxSize()
                 .padding(16.dp)
-                .fillMaxWidth()
-                .background(color = Color.White),
+                .background(color = Color.Black),
             horizontalAlignment = Alignment.Start
-        )
-        {
-
-            // Content inside the Box
+        ) {
             Text(
-                text = viewModel.mutableState.number1.toString(),
+                text = textValue,
                 modifier = Modifier
                     .padding(8.dp)
-                    .width(2000.dp),
+                    .width(2000.dp)
+                    .height(100.dp)
+                    .background(color = Color.White),
                 textAlign = TextAlign.Center
 
             )
+            for (i in 0..3) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Start
+                ) {
+                    for (j in (i - 1) * 3 + 2..i * 3) {
+                        Button(
+                            onClick = { textValue += j.toString() },
+                            modifier = Modifier.width(80.dp)
+                        ) {
+                            Text(text = j.toString())
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(16.dp))
+                }
+
+
+            }
+
+            for (i in 0..1) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.Top
+                ) {
+                    for (j in (i - 1) * 3 + 2..i * 3) {
+                        Button(
+                            onClick = { textValue += j.toString() },
+                            modifier = Modifier.width(80.dp)
+                        ) {
+                            Text(text = "+")
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(16.dp))
+                }
+
+            }
+
+
         }
     }
-
-    Row(
-        modifier = Modifier.fillMaxWidth().padding(75.dp),
-        horizontalArrangement = Arrangement.SpaceAround
-    ) {
-
-        CalCulatorButton(
-            "Del",
-            modifier = Modifier.weight(30f),
-            backgroundColor = Color.LightGray,
-            onClick = {CalculatorActions.Delete}
-        )
-        CalCulatorButton(
-            "/",
-            modifier = Modifier.weight(30f),
-            backgroundColor =   Color.LightGray,
-            onClick = {CalculatorOperation.Divide}
-        )
-
-        CalCulatorButton(
-            "+",
-            modifier = Modifier.weight(30f),
-            backgroundColor = Color.LightGray,
-            onClick = {CalculatorOperation.Add}
-        )
-        CalCulatorButton(
-            "=",
-            modifier = Modifier.weight(30f),
-            backgroundColor = Color.LightGray,
-            onClick = {CalculatorActions.Calculate}
-        )
-        CalCulatorButton(
-            "*",
-            modifier = Modifier.weight(30f),
-            backgroundColor = Color.LightGray,
-            onClick = {CalculatorOperation.Multiply}
-        )
-        CalCulatorButton(
-            "-",
-            modifier = Modifier.weight(30f),
-            backgroundColor = Color.LightGray,
-            onClick = {CalculatorOperation.Subtract}
-        )
-
-
-
-    }
-
-    Row(
-        modifier = Modifier.fillMaxWidth().padding(150.dp),
-        horizontalArrangement = Arrangement.SpaceAround
-    ) {
-
-        CalCulatorButton(
-            "1",
-            modifier = Modifier.weight(30f),
-            backgroundColor = Color.LightGray,
-            onClick = {viewModel.onAction(calculatorActions = CalculatorActions.Number(1))}
-        )
-        CalCulatorButton(
-            "2",
-            modifier = Modifier.weight(30f),
-            backgroundColor =   Color.LightGray,
-            onClick = {viewModel.onAction(calculatorActions = CalculatorActions.Number(2))}
-        )
-
-        CalCulatorButton(
-            "3",
-            modifier = Modifier.weight(30f),
-            backgroundColor = Color.LightGray,
-            onClick = {viewModel.onAction(calculatorActions = CalculatorActions.Number(3))}
-        )
-        CalCulatorButton(
-            "4",
-            modifier = Modifier.weight(30f),
-            backgroundColor = Color.LightGray,
-            onClick = {viewModel.onAction(calculatorActions = CalculatorActions.Number(4))}
-        )
-        CalCulatorButton(
-            "5",
-            modifier = Modifier.weight(30f),
-            backgroundColor = Color.LightGray,
-            onClick = {viewModel.onAction(calculatorActions = CalculatorActions.Number(5))}
-        )
-        CalCulatorButton(
-            "6",
-            modifier = Modifier.weight(30f),
-            backgroundColor = Color.LightGray,
-            onClick = {viewModel.onAction(calculatorActions = CalculatorActions.Number(6))}
-        )
-    }
 }
-
-//@Preview
-//@Composable
-//fun PreviewMyBox() {
-//    calculator(state = CalculatorState(1,2, CalculatorOperation.Add),{})
-//}
-//TODO Add the Box
-//TODO Column
-//Text
-//Row
-//Calculator Button
-//Preview

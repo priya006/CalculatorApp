@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
 
 
                 calculator(
-                    calculatorViewModel
+
                 )
             }
         }
