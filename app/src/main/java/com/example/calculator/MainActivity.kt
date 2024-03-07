@@ -13,13 +13,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CalculatorTheme {
-
-                //get the state reference from view model.
-//               var state =  calculatorViewModel.mutableState
-
-
                 calculator(
-
+                    calculatorViewModel
                 )
             }
         }
