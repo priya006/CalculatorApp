@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun CalculatorButton(
-    text: String,
+    text: Int,
     modifier: Modifier = Modifier,
     backgroundColor: Color = MaterialTheme.colorScheme.secondary,
     contentColor: Color = MaterialTheme.colorScheme.onSecondary,
@@ -35,7 +35,7 @@ fun CalculatorButton(
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = text,
+            text = text.toString(),
             color = contentColor,
             )
     }
@@ -46,7 +46,7 @@ fun CalculatorButton(
 @Composable
 fun CalculatorButtonPreview() {
     CalculatorButton(
-        text = "1",
+        text = 1,
         modifier = Modifier.background(color = Color.Gray, shape = CircleShape),
         contentColor = Color.White
     ) {
