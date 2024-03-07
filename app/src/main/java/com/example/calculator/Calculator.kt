@@ -83,25 +83,25 @@ fun calculator(
                     }
 
                 }
-                val mathOperations = listOf("+", "-", "*", "/")
-                LazyRow(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalAlignment = Alignment.Bottom,
-                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
-                ) {
-                    items(mathOperations) { buttonText ->
-                        CalculatorButton(
-                            text = buttonText,
-                            modifier = Modifier.background(color = Color.Gray, shape = CircleShape),
-                            contentColor = Color.White
-                        ) {
 
-                        }
+            }
+            val mathOperations = listOf("+", "-", "*", "/")
+            LazyRow(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.Bottom,
+                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
+            ) {
+                items(mathOperations) { buttonText ->
+                    CalculatorButton(
+                        text = buttonText,
+                        modifier = Modifier.background(color = Color.Gray, shape = CircleShape),
+                        contentColor = Color.White
+                    ) {
+
                     }
                 }
             }
-
         }
     }
 }
