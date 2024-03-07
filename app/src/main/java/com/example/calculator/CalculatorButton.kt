@@ -18,8 +18,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun CalculatorButton(
-    text: Int,
+fun <T>CalculatorButton(
+    text: T,
     modifier: Modifier = Modifier,
     backgroundColor: Color = MaterialTheme.colorScheme.secondary,
     contentColor: Color = MaterialTheme.colorScheme.onSecondary,
