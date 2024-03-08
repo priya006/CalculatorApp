@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -30,7 +31,7 @@ fun <T>CalculatorButton(
         modifier = modifier
             .background(backgroundColor, shape)
             .size(25.dp) // Increase the width and height of the Box
-            .clickable { onClick }
+            .clickable { onClick() }
             .then(modifier),
         contentAlignment = Alignment.Center
     ) {
@@ -53,15 +54,18 @@ fun CalculatorButtonPreview() {
 
     }
 
-//    CalculatorButton(
-//        text = "+",
-//        modifier = Modifier.background(color = Color.Gray, shape = CutCornerShape(
-//            topStart = 8.dp,
-//            topEnd = 8.dp,
-//            bottomStart = 8.dp,
-//            bottomEnd = 8.dp
-//        )),
-//        contentColor = Color.White
-//    ) {
+    CalculatorButton(
+        text = "+",
+        modifier = Modifier.background(
+            color = Color.Gray, shape = CutCornerShape(
+                topStart = 8.dp,
+                topEnd = 8.dp,
+                bottomStart = 8.dp,
+                bottomEnd = 8.dp
+            )
+        ),
+        contentColor = Color.White
+    ) {
 
+    }
 }

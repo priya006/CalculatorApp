@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CalculatorTheme {
-                calculator(
+                calculatorApp(
                     calculatorViewModel
                 )
             }

@@ -13,30 +13,36 @@ class CalculatorViewModel : ViewModel() {
     var mutableState by mutableStateOf(CalculatorState())
 
 
+    //Delete the last character when Delete is pressed
+    fun delete() {
+        if (mutableState.number1 != null) {
+            mutableState = mutableState.copy(number1 = mutableState.number1)
+        }
+    }
 
-//Delete the last character when Delete is pressed
-
-//    fun delete() {
-//        if (mutableState.number1.length > 1){
-//           mutableState = mutableState.copy(number1 = mutableState.number1.dropLast(2))
-//        }
-//    }
-
-    fun enterNumber(digit: Int){
-        if(mutableState.number1 != null) {
+    fun enterNumber(digit: Int) {
+        if (mutableState.number1 != null) {
             mutableState = mutableState.copy(
                 number1 =  digit
             )
             return
         }
+
+        if (mutableState.number2 != null) {
+            mutableState = mutableState.copy(
+                number2 =  digit
+            )
+            return
+        }
     }
 
-    private fun enterOperation(){
+
+    private fun enterOperation() {
 
     }
 
-    fun onAction(calculatorActions: CalculatorActions){
-        when(calculatorActions){
+    fun onAction(calculatorActions: CalculatorActions) {
+        when (calculatorActions) {
             is CalculatorActions.Number -> enterNumber(calculatorActions.number)
             is CalculatorActions.Operation -> enterOperation()
             else -> {}

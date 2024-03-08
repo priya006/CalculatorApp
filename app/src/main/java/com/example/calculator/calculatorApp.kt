@@ -28,7 +28,7 @@ import com.example.calculator.ui.theme.Purple40
 
 
 @Composable
-fun calculator(
+fun calculatorApp(
     calculatorViewModel: CalculatorViewModel
 ) {
 
@@ -45,7 +45,8 @@ fun calculator(
             horizontalAlignment = Alignment.End
         ) {
             Text(
-                text = calculatorViewModel.mutableState.toString(),
+//                text = "${calculatorViewModel.mutableState.number1} ${(calculatorViewModel.mutableState.number1 ?: "")} ${calculatorViewModel.mutableState.number2}",
+                text = "${calculatorViewModel.mutableState.number1}",
                 modifier = Modifier
                     .padding(8.dp)
                     .width(500.dp)
@@ -77,14 +78,14 @@ fun calculator(
                             text = buttonText,
                             modifier = Modifier.background(color = Color.Gray, shape = CircleShape),
                             contentColor = Color.White,
-                            onClick = { calculatorViewModel.enterNumber(buttonText)}
+                            onClick = { calculatorViewModel.onAction(CalculatorActions.Number(buttonText))}
                         )
                     }
 
                 }
 
             }
-            val mathOperations = listOf("+", "-", "*", "/","=")
+            val mathOperations = listOf("+", "-", "*", "/","=","AC")
             LazyRow(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
