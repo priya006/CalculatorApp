@@ -45,7 +45,7 @@ fun calculator(
             horizontalAlignment = Alignment.End
         ) {
             Text(
-                text = calculatorViewModel.mutableState.number1.toString(),
+                text = calculatorViewModel.mutableState.toString(),
                 modifier = Modifier
                     .padding(8.dp)
                     .width(500.dp)
@@ -76,16 +76,15 @@ fun calculator(
                         CalculatorButton(
                             text = buttonText,
                             modifier = Modifier.background(color = Color.Gray, shape = CircleShape),
-                            contentColor = Color.White
-                        ) {
-
-                        }
+                            contentColor = Color.White,
+                            onClick = { calculatorViewModel.enterNumber(buttonText)}
+                        )
                     }
 
                 }
 
             }
-            val mathOperations = listOf("+", "-", "*", "/")
+            val mathOperations = listOf("+", "-", "*", "/","=")
             LazyRow(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
