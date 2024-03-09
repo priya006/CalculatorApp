@@ -23,33 +23,60 @@ class CalculatorViewModel : ViewModel() {
     fun enterNumber(digit: Int) {
         if (mutableState.number1 != null) {
             mutableState = mutableState.copy(
-                number1 =  digit
+                number1 = digit
             )
             return
         }
 
         if (mutableState.number2 != null) {
+
             mutableState = mutableState.copy(
-                number2 =  digit
+                number2 = digit
+
             )
             return
         }
     }
 
 
-    private fun enterOperation() {
+    //The State gets the Symbol
+    fun enterOperation(symbol: String) {
+        if (symbol in "+-×÷") {
+            if (mutableState != null) {
+                val lastChar = mutableState.symbol
+                mutableState = mutableState.copy(
+                    symbol = lastChar
+                )
+            }
+        }
 
     }
 
-    fun onAction(calculatorActions: CalculatorActions) {
-        when (calculatorActions) {
-            is CalculatorActions.Number -> enterNumber(calculatorActions.number)
-            is CalculatorActions.Operation -> enterOperation()
+    fun calCulate() {
+        //get the number and add to the state
+        var number1 = mutableState.number1
+        var number2 = mutableState.number2
+
+        //Updating the state
+        if (number1 != null && number2 != null) {
+            mutableState = mutableState.copy(
+                number1 = number1 + number2,
+                number2 = null,
+                symbol = null
+            )
+        }
+
+    }
+
+    fun onAction(operation: String) {
+        when (operation) {
+            "+" -> enterOperation("+")
+            "=" -> calCulate()
             else -> {}
         }
     }
 }
 
 
-//View model with State
-//New  Composables start until getting the String
+
+

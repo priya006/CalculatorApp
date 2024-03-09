@@ -46,7 +46,7 @@ fun calculatorApp(
         ) {
             Text(
 //                text = "${calculatorViewModel.mutableState.number1} ${(calculatorViewModel.mutableState.number1 ?: "")} ${calculatorViewModel.mutableState.number2}",
-                text = "${calculatorViewModel.mutableState.number1}",
+                text = calculatorViewModel.mutableState.number1.toString(),
                 modifier = Modifier
                     .padding(8.dp)
                     .width(500.dp)
@@ -78,7 +78,7 @@ fun calculatorApp(
                             text = buttonText,
                             modifier = Modifier.background(color = Color.Gray, shape = CircleShape),
                             contentColor = Color.White,
-                            onClick = { calculatorViewModel.onAction(CalculatorActions.Number(buttonText))}
+                            onClick = { calculatorViewModel.enterNumber(buttonText)}
                         )
                     }
 
@@ -96,15 +96,17 @@ fun calculatorApp(
                     CalculatorButton(
                         text = buttonText,
                         modifier = Modifier.background(color = Color.Gray, shape = CircleShape),
-                        contentColor = Color.White
-                    ) {
-
-                    }
+                        contentColor = Color.White,
+                        onClick = {calculatorViewModel.onAction(buttonText)}
+                    )
                 }
             }
         }
     }
 }
+
+
+
 
 
 @Preview
