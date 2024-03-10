@@ -10,46 +10,63 @@ import androidx.lifecycle.ViewModel
 //As Viewmodel outlives activity life cycle
 class CalculatorViewModel : ViewModel() {
 
-    var mutableState by mutableStateOf(CalculatorState())
+
+    var mutableState by mutableStateOf(CalculatorState(number1 = 0, number2 = 0, symbol = ""))
 
 
-    //Delete the last character when Delete is pressed
-    fun delete() {
+    /*
+    When AC is Pressed it gets cleared
+     */
+    fun clearAll() {
         if (mutableState.number1 != null) {
-            mutableState = mutableState.copy(number1 = mutableState.number1)
+            mutableState = mutableState.copy(number1 = 0)
         }
     }
 
-    fun enterNumber(digit: Int) {
-        if (mutableState.number1 != null) {
+//    fun enterNumber(digit: String) {
+//        if (mutableState.number1 != null) {
+//            mutableState = mutableState.copy(
+//                number1 = digit
+//            )
+//            return
+//        }
+//
+//        //TODO: number2 is always null
+//        if (mutableState.number2 != null) {
+//
+//            mutableState = mutableState.copy(
+//                number2 = digit
+//
+//            )
+//            return
+//        }
+//    }
+
+    fun addition(number: Int) {
+        if (mutableState.symbol!!.isEmpty()) {
             mutableState = mutableState.copy(
-                number1 = digit
+                number1 = number
             )
-            return
-        }
-
-        if (mutableState.number2 != null) {
-
+        } else {
             mutableState = mutableState.copy(
-                number2 = digit
-
+                number2 = number
             )
-            return
         }
     }
 
 
-    //The State gets the Symbol
+    /*
+    state is mutated with the symbol or operation entered
+     */
     fun enterOperation(symbol: String) {
         if (symbol in "+-×÷") {
             if (mutableState != null) {
-                val lastChar = mutableState.symbol
+
                 mutableState = mutableState.copy(
-                    symbol = lastChar
+                    symbol = symbol
                 )
             }
         }
-
     }
 
     fun calCulate() {
@@ -61,17 +78,18 @@ class CalculatorViewModel : ViewModel() {
         if (number1 != null && number2 != null) {
             mutableState = mutableState.copy(
                 number1 = number1 + number2,
-                number2 = null,
-                symbol = null
+                number2 = number2,
+                symbol = ""
             )
         }
-
+        return
     }
 
     fun onAction(operation: String) {
         when (operation) {
             "+" -> enterOperation("+")
             "=" -> calCulate()
+            "AC" -> clearAll()
             else -> {}
         }
     }

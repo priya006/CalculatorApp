@@ -1,7 +1,10 @@
 package com.example.calculator
 
+/*
+   Data Class Holding the Three States
+ */
 data class CalculatorState(
-    val number1: Int? = 1,
-    val number2: Int? = 2,
-    val symbol: CalculatorOperation? = null
+    var number1: Int?,
+    var number2: Int?,
+    var symbol: String?
 )

@@ -45,8 +45,8 @@ fun calculatorApp(
             horizontalAlignment = Alignment.End
         ) {
             Text(
-//                text = "${calculatorViewModel.mutableState.number1} ${(calculatorViewModel.mutableState.number1 ?: "")} ${calculatorViewModel.mutableState.number2}",
-                text = calculatorViewModel.mutableState.number1.toString(),
+                //TODO figure out how to get number 2
+                text = "${calculatorViewModel.mutableState.number1}\n ${calculatorViewModel.mutableState.number2}",
                 modifier = Modifier
                     .padding(8.dp)
                     .width(500.dp)
@@ -78,7 +78,7 @@ fun calculatorApp(
                             text = buttonText,
                             modifier = Modifier.background(color = Color.Gray, shape = CircleShape),
                             contentColor = Color.White,
-                            onClick = { calculatorViewModel.enterNumber(buttonText)}
+                            onClick = { calculatorViewModel.addition(buttonText)}
                         )
                     }
 

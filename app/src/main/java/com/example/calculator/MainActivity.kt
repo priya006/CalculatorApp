@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.example.calculator.ui.theme.CalculatorTheme
 
+//Entry point
 class MainActivity : ComponentActivity() {
 
     //Declare your view model instance
