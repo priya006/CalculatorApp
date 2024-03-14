@@ -1,3 +1,4 @@
 Work In progress
 
-![image](https://github.com/priya006/Calculator/assets/16076524/8535cea6-8a83-443a-9b67-f6e8525b9290)
+![2024-03-14 14 48 50](https://github.com/priya006/Calculator/assets/16076524/f8a0b032-577c-45b2-b05c-a32075241442)
+
